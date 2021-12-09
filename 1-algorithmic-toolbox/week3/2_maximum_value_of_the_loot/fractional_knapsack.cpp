@@ -44,7 +44,6 @@ double get_optimal_value(int capacity, vector<Item> items) {
       capacity = capacity - currentWeight;
     } else if (currentWeight > capacity) { // can't take the entire weight
       double toTake = (double)(capacity)*currentUnitValue;
-      // curw = 30 - 10 = 20
       value = value + toTake;
       capacity = capacity - currentWeight;
     }
