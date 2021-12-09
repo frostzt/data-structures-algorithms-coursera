@@ -31,6 +31,10 @@ double get_optimal_value(int capacity, vector<Item> items) {
   int size = items.size();
   double value = 0.0;
 
+  if (size == 0) {
+    return 0;
+  }
+
   std::sort(items.begin(), items.end(), compareItems);
 
   for (int i = 0; i < size; i++) {
