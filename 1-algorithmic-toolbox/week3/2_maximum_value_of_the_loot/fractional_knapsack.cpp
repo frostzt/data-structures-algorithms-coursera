@@ -40,10 +40,10 @@ double get_optimal_value(int capacity, vector<Item> items) {
 
     // If the bag can take the entire weight of the item
     if (currentWeight <= capacity) {
-      value = value + currentValue;
+      value = value + (double)currentValue;
       capacity = capacity - currentWeight;
     } else if (currentWeight > capacity) { // can't take the entire weight
-      int toTake = (currentWeight - capacity) * currentUnitValue;
+      double toTake = (double)(currentWeight - capacity) * currentUnitValue;
       value = value + toTake;
       capacity = capacity - currentWeight;
     }
