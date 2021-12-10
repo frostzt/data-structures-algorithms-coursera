@@ -9,12 +9,12 @@ using std::vector;
  */
 class Item {
 public:
-  long long weight;
-  long long value;
+  double weight;
+  double value;
   double unitValue;
-  Item(long long weight_value, long long value_value)
+  Item(double weight_value, double value_value)
       : weight{weight_value}, value{value_value} {
-    unitValue = (double)value / (double)weight;
+    unitValue = value / weight;
   }
 
   Item() {}
@@ -38,18 +38,18 @@ double get_optimal_value(int capacity, vector<Item> items) {
   std::sort(items.begin(), items.end(), compareItems);
 
   for (int i = 0; i < size; i++) {
-    long long currentValue = items.at(i).value;
-    long long currentWeight = items.at(i).weight;
+    double currentValue = items.at(i).value;
+    double currentWeight = items.at(i).weight;
     double currentUnitValue = items.at(i).unitValue;
 
     // If the bag can take the entire weight of the item
     if (currentWeight <= capacity) {
-      value = value + (double)currentValue;
+      value = value + currentValue;
       capacity = capacity - currentWeight;
     } else if (currentWeight > capacity) { // can't take the entire weight
-      double toTake = (double)capacity * currentUnitValue;
+      double toTake = capacity * currentUnitValue;
       value = value + toTake;
-      capacity = capacity - currentWeight;
+      capacity = capacity - (int)currentWeight;
     }
 
     if (capacity == 0) {
@@ -66,7 +66,7 @@ int main() {
   std::cin >> n >> capacity;
   vector<Item> items(n);
   for (int i = 0; i < n; i++) {
-    long long v, w;
+    double v, w;
     std::cin >> v >> w;
     items[i] = Item(w, v);
   }
