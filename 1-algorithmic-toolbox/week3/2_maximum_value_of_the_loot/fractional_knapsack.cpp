@@ -32,7 +32,11 @@ double get_optimal_value(int capacity, vector<Item> items) {
   double value = 0.0;
 
   if (capacity == 0) {
-    return 0;
+    return value;
+  }
+
+  if (size == 0) {
+    return value;
   }
 
   std::sort(items.begin(), items.end(), compareItems);
@@ -49,7 +53,7 @@ double get_optimal_value(int capacity, vector<Item> items) {
     } else if (currentWeight > capacity) { // can't take the entire weight
       double toTake = capacity * currentUnitValue;
       value = value + toTake;
-      capacity = capacity - (int)currentWeight;
+      capacity = 0;
     }
 
     if (capacity == 0) {
