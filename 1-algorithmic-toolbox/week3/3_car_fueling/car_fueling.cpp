@@ -9,7 +9,17 @@ int compute_min_refills(int dest, int tank, vector<int> &stops) {
   int refills = 0;
   int currPos = 0;
 
+  if (dest <= tank) {
+    return 0;
+  }
+
   while (currPos != size) {
+    // If the position is not reachable
+    if (stops.at(currPos + 1) - stops.at(currPos) > tank) {
+      refills = -1;
+      break;
+    }
+
     // Check if the next position is reachable with the current tank capacity
     if (stops.at(currPos + 1) - stops.at(currPos) <= currTank) {
       currPos++;
